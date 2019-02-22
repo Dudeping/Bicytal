@@ -1,0 +1,290 @@
+*{
+	margin: 0 0;
+	padding: 0 0;
+}
+body{
+	background-color: #E6E7E8;
+	font:12px/1.5 Tahoma, Helvetica, Arial, sans-serif
+}
+#top-link{
+	top: 0;
+	width: 100%;
+	height: 55px;
+	line-height: 55px;
+	font-size: 18px;
+	position: fixed;
+	background-color: #000000;
+	opacity:0.6;
+	border-bottom: 1px solid #000000;
+	z-index: 999;
+}
+#nav_img a{
+	background: url(../img/01.jpeg);
+	width: 190px;
+	height: 40px;
+	position: fixed;
+	left: 50px;
+	top:5px;
+}
+#top-link ul.link-left{
+	list-style: none;
+	margin-left: 300px;
+}
+#top-link ul.link-right{
+	list-style: none;
+	margin-left: 1200px;
+}
+#top-link ul li{
+	float: left;
+}
+#top-link ul li a{
+	color: #FFFFFF;
+	outline: none;
+	text-decoration: none;
+	font-weight: normal;
+	padding: 0 20px;	
+}
+#top-link ul li a:hover{
+	font-size: 20px;
+}
+
+a.a1:hover::before,a.a1:hover::after { position:fixed; }
+a.a1:hover::before { content: "\5B"; left: 310px; }
+a.a1:hover::after { content: "\5D"; right:  970px; }
+
+a.a2:hover::before,a.a2:hover::after { position:fixed; }
+a.a2:hover::before { content: "\5B"; left: 395px; }
+a.a2:hover::after { content: "\5D"; right:  880px; }
+
+a.a3:hover::before,a.a3:hover::after { position:fixed; }
+a.a3:hover::before { content: "\5B"; left: 482px; }
+a.a3:hover::after { content: "\5D"; right:  710px; }
+
+a.a4:hover::before,a.a4:hover::after { position:fixed; }
+a.a4:hover::before { content: "\5B"; left: 648px; }
+a.a4:hover::after { content: "\5D"; right:  550px; }
+
+a.a5:hover::before,a.a5:hover::after { position:fixed; }
+a.a5:hover::before { content: "\5B"; left: 808px; }
+a.a5:hover::after { content: "\5D"; right:  400px; }
+
+a.a6:hover::before,a.a6:hover::after { position:fixed; }
+a.a6:hover::before { content: "\5B"; left: 1210px; }
+a.a6:hover::after { content: "\5D"; right:  60px; }
+
+#header{
+	position: relative;
+	width: 70%;
+	padding: 10px;
+	margin: 100px auto;
+	overflow: hidden;
+	border-bottom: 2px solid #CCCCCC;
+}
+#head{
+	position: relative;
+	width: 70%;
+	padding: 10px;
+	margin: 100px auto;
+	overflow: hidden;
+	border-bottom: 2px solid #CCCCCC;
+}
+.head_portrait{
+	margin: 10px;
+}
+.head_portrait img{
+	float: left;
+	margin: 0 15px 15px 90px;
+	display: inline-block;
+}
+.operation{
+	position: relative;
+	top: 20px;
+	left: 30px;
+	display: inline-block;
+	width: 35%;
+}
+
+.operation ul li{
+	float: left;
+	list-style: none;
+	margin: 5px 15px;
+}
+.operation a{
+	text-decoration: none;
+	font-family: "华文仿宋","楷体","宋体";
+	font-size: 20px;
+	color: #39adb4;
+}
+.operation a:hover{
+	color:#23527c;
+	font-weight: bold;
+	font-family: "comic sans ms";
+}
+.operation img,.nav img{
+	width: 25px;
+	height: 25px;
+}
+#wrap{
+	margin: -60px auto;
+	width: 70% ;
+}
+#content{
+	margin: -70px auto;
+	width: 70%;
+}
+#content .nav h2{
+	font-family: "comic sans ms";
+	color: rgba(255,0,0,0.6);
+	float: left;
+}
+#content .nav ul li{
+	list-style: none;
+	float: right;
+	margin: 0 5px 0 5px;
+}
+
+#content .nav ul li a{
+	text-decoration: none;
+	font-family: arial;
+	font-size: 15px;
+	color: #000;
+}
+#content .nav ul li a:hover{
+	font-weight: bold;
+	font-size: 18px;
+	font-family: "comic sans ms";
+}
+#PurchaseHistory{
+	position: relative;
+	top: 20px;
+}
+#PurchaseHistory span{
+	font-family: "华文行楷";
+	font-size: 20px;
+}
+#PurchaseHistory button{
+	margin: 15px 10px;
+	height: 25px;
+	padding: 0px 10px;
+}
+#PurchaseHistory input{
+	margin: 5px 5px 5px 15px;
+}
+#detailed_narcissism input.submit{
+	display: inline-block;
+	background-color: rgba(0,0,0,0.5);
+	font-size: 18px;
+	font-family: "comic sans ms","microsoft yahei",arial;
+	color: white;
+	border: none;
+	width: 110px;
+	line-height: 30px;
+	letter-spacing: 2px;
+	position: relative;
+	top: 30px;
+	left: 750px;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
+#detailed_narcissism input:hover{
+	background-color: rgba(0,0,0,1);
+	font-size: 20px;
+}
+#detailed_narcissism h1,#PurchaseHistory h1{
+	margin: 10px 0;
+	font-size:18pt;
+	color: #000;
+	font-family: "comic sans ms";
+	text-align: center;
+	clear: both;
+}
+#detailed_narcissism table,#PurchaseHistory table{
+	width: 90%;
+	border: 1px solid #000;
+	margin: 50px auto;
+}
+#PurchaseHistory table{
+	margin: 40px auto;
+}
+tr.box1{
+	background-color: #EFF9F9;
+}
+#detailed_narcissism th,#PurchaseHistory th{
+	font-size: 16px;
+	padding: 10px 5px 10px 0;
+	text-align: right;
+	width: 200px;
+	height: 30px;
+}
+#detailed_narcissism button,#PurchaseHistory button.back{
+	position: relative;
+	top: 30px;
+	left: 700px;
+	margin: 5px 60px;
+	padding: 0 5px;
+	height: 35px;
+	width: 110px;
+	background-color: rgba(0,0,0,0.5);
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
+
+#detailed_narcissism button:hover,#PurchaseHistory button.back:hover{
+	background-color: rgba(0,0,0,1);
+}
+#detailed_narcissism button a,button.back a{
+	color: white;
+	text-decoration: none;
+	font-family: "comic sans ms","microsoft yahei";
+	height: 20px;
+	line-height: 20px;
+	font-size: 18px;
+	letter-spacing: 2px;
+}
+#detailed_narcissism button a:hover,button.back a:hover{
+	font-size: 20px;
+}
+
+#detailed_narcissism table input{
+	height: 25px;
+	width: 400px;
+}
+#PurchaseHistory th{
+	width: 150px;
+	text-align: left;
+	padding: 10px 20px;
+}
+#PurchaseHistory table a{
+	float: right;
+	color: blue;
+}
+#detailed_narcissism td,#PurchaseHistory td{
+	font-size: 16px;
+	padding: 10px 20px;
+	width: 400px;
+	height: 40px;
+	font-family: arial;
+}
+#PurchaseHistory td{
+	width: 250px;
+}
+#footer,#foot{
+	width: 100%;
+	position: relative;
+	top: 120px;
+}
+#foot{
+	top: 60px;
+}
+#footer span,#foot span{
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+	position: relative;
+	font-family: arial;
+	font-size: 13px;
+	color: #696969;
+	padding: 0 0 10px 0;
+}

@@ -1,0 +1,312 @@
+﻿
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>Plot Chart</title>
+
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="Content/User/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="Content/User/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+
+    <link href="Content/User/css/plugins/iCheck/custom.css" rel="stylesheet">
+
+    <link href="Content/User/css/plugins/chosen/chosen.css" rel="stylesheet">
+
+    <link href="Content/User/css/plugins/colorpicker/css/bootstrap-colorpicker.min.css" rel="stylesheet">
+
+    <link href="Content/User/css/plugins/cropper/cropper.min.css" rel="stylesheet">
+
+    <link href="Content/User/css/plugins/switchery/switchery.css" rel="stylesheet">
+
+    <link href="Content/User/css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet">
+
+    <link href="Content/User/css/plugins/nouslider/jquery.nouislider.css" rel="stylesheet">
+
+    <link href="Content/User/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+
+    <link href="Content/User/css/plugins/ionRangeSlider/ion.rangeSlider.css" rel="stylesheet">
+    <link href="Content/User/css/plugins/ionRangeSlider/ion.rangeSlider.skinFlat.css" rel="stylesheet">
+
+    <link href="Content/User/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+
+    <link href="Content/User/css/plugins/clockpicker/clockpicker.css" rel="stylesheet">
+    <link href="Content/User/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+
+    <link href="Content/User/css/animate.css" rel="stylesheet">
+    <link href="Content/User/css/style.css?v=4.1.0" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Select</h5>
+                    </div>
+                    <form action="..." method="get">
+                        <div class="ibox-content">
+                            <div class="form-group">
+                                <label class="font-noraml">The chart type</label>
+                                <div class="input-group">
+                                    <select name="type" data-placeholder="Column" class="chosen-select" style="width:350px;" tabindex="2">
+                                        <option value="Column">Column</option>
+                                        <option value="Pie" hassubinfo="true">Pie</option>
+                                        <option value="Line" hassubinfo="true">Line</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="font-noraml">The chart dimension</label>
+                                <div class="input-group">
+                                    <select name="dim" data-placeholder="2D" class="chosen-select" style="width:350px;" tabindex="2">
+                                        <option value="2D">2D</option>
+                                        <option value="3D" hassubinfo="true">3D</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <p>
+                                <button type="submit" class="btn btn-outline btn-default">View</button>
+                            </p>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>柱状图</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <p>
+                            1:yellow, 2:blue, 3:red
+                        </p>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="flot-chart">
+                            <div class="flot-chart-content" id="flot-bar-chart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>折线图</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <p>
+                            1:yellow, 2:blue, 3:red
+                        </p>
+                    </div>
+                    <div class="ibox-content">
+
+                        <div class="flot-chart">
+                            <div class="flot-chart-content" id="flot-line-chart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>饼状图</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="flot-chart">
+                            <div class="flot-chart-content" id="flot-pie-chart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="Content/User/js/jquery.min.js?v=2.1.4"></script>
+    <script src="Content/User/js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="Content/User/js/content.js?v=1.0.0"></script>
+
+    <script src="Content/User/js/plugins/flot/jquery.flot.js"></script>
+    <script src="Content/User/js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+    <script src="Content/User/js/plugins/flot/jquery.flot.resize.js"></script>
+    <script src="Content/User/js/plugins/flot/jquery.flot.pie.js"></script>
+    <script src="Content/User/js/content.js?v=1.0.0"></script>
+
+    <script>
+        //Flot Bar Chart
+        $(function () {
+            var barOptions = {
+                series: {
+                    bars: {
+                        show: true,
+                        barWidth: 0.6,
+                        fill: true,
+                        fillColor: {
+                            colors: [{
+                                opacity: 0.8
+                            }, {
+                                opacity: 0.8
+                            }]
+                        }
+                    }
+                },
+                xaxis: {
+                    tickDecimals: 0
+                },
+                colors: ["#1ab394"],
+                grid: {
+                    color: "#999999",
+                    hoverable: true,
+                    clickable: true,
+                    tickColor: "#D4D4D4",
+                    borderWidth: 0
+                },
+                legend: {
+                    show: false
+                },
+                tooltip: true,
+                tooltipOpts: {
+                    content: "x: %x, y: %y"
+                }
+            };
+            var barData = {
+                label: "bar",
+                data: [
+                    [1, 34],
+                    [2, 25],
+                    [3, 19],
+                    [4, 34],
+                    [5, 32],
+                    [6, 44]
+                ]
+            };
+            $.plot($("#flot-bar-chart"), [barData], barOptions);
+
+        });
+
+        $(function () {
+            var barOptions = {
+                series: {
+                    lines: {
+                        show: true,
+                        lineWidth: 2,
+                        fill: true,
+                        fillColor: {
+                            colors: [{
+                                opacity: 0.0
+                            }, {
+                                opacity: 0.0
+                            }]
+                        }
+                    }
+                },
+                xaxis: {
+                    tickDecimals: 0
+                },
+                colors: ["#1ab394"],
+                grid: {
+                    color: "#999999",
+                    hoverable: true,
+                    clickable: true,
+                    tickColor: "#D4D4D4",
+                    borderWidth: 0
+                },
+                legend: {
+                    show: false
+                },
+                tooltip: true,
+                tooltipOpts: {
+                    content: "x: %x, y: %y"
+                }
+            };
+            var barData = {
+                label: "bar",
+                data: [
+                    [1, 34],
+                    [2, 25],
+                    [3, 19],
+                    [4, 34],
+                    [5, 32],
+                    [6, 44]
+                ]
+            };
+            $.plot($("#flot-line-chart"), [barData], barOptions);
+
+        });
+        //Flot Pie Chart
+        $(function () {
+
+            var data = [{
+                label: "yelle",
+                data: 21,
+                color: "#d3d3d3",
+            }, {
+                label: "red",
+                data: 3,
+                color: "#bababa",
+            }, {
+                label: "bule",
+                data: 15,
+                color: "#79d2c0",
+            }/*, {
+                label: "数据 4",
+                data: 52,
+                color: "#1ab394",
+            }*/];
+
+            var plotObj = $.plot($("#flot-pie-chart"), data, {
+                series: {
+                    pie: {
+                        show: true
+                    }
+                },
+                grid: {
+                    hoverable: true
+                },
+                tooltip: true,
+                tooltipOpts: {
+                    content: "%p.0%, %s", // show percentages, rounding to 2 decimal places
+                    shifts: {
+                        x: 20,
+                        y: 0
+                    },
+                    defaultTheme: false
+                }
+            });
+
+        });
+    </script>
+
+    <script src="Content/User/js/plugins/chosen/chosen.jquery.js"></script>
+    <script src="Content/User/js/plugins/jsKnob/jquery.knob.js"></script>
+    <script src="Content/User/js/plugins/jasny/jasny-bootstrap.min.js"></script>
+    <script src="Content/User/js/plugins/datapicker/bootstrap-datepicker.js"></script>
+    <script src="Content/User/js/plugins/prettyfile/bootstrap-prettyfile.js"></script>
+    <script src="Content/User/js/plugins/nouslider/jquery.nouislider.min.js"></script>
+    <script src="Content/User/js/plugins/switchery/switchery.js"></script>
+    <script src="Content/User/js/plugins/ionRangeSlider/ion.rangeSlider.min.js"></script>
+    <script src="Content/User/js/plugins/iCheck/icheck.min.js"></script>
+    <script src="Content/User/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="Content/User/js/plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
+    <script src="Content/User/js/plugins/clockpicker/clockpicker.js"></script>
+    <script src="Content/User/js/plugins/cropper/cropper.min.js"></script>
+    <script src="Content/User/js/demo/form-advanced-demo.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<link href="~/Content/css/ParkingPermit.css" rel="stylesheet" />
+
+<link href="~/Content/src/jquery.skidder.css" rel="stylesheet" />
+<link type="text/css" rel="stylesheet" href="css/ParkingPermit.css">
+
+<div id="wrap">
+    <div id="header">
+        <img class="bigword" src="~/Content/img/02.jpg" />
+        <h2>The heaven of parking permit for University Students</h2>
+    </div>
+    <div class="Function_introduction">
+        <h3>After logging in here, you can have the following features.</h3>
+        <ol>
+            <li>View and modify personal data in the personal information page.</li>
+            <li>In the purchase of the product page, you need to buy the parking permit.</li>
+            <li>
+                On the purchase of the product history page,
+                you can see all the products you have purchased and their details.
+            </li>
+        </ol>
+    </div>
+    <div class="slideshow">
+        <div class="slide"><img src="~/Content/img/04.jpg"></div>
+        <div class="slide"><img src="~/Content/img/2.jpg"></div>
+        <div class="slide"><img src="~/Content/img/06.jpg"></div>
+        <div class="slide"><img src="~/Content/img/7.jpg"></div>
+        <div class="slide"><img src="~/Content/img/2.jpeg"></div>
+    </div>
+    <script src="~/Content/js/jquery-1.11.0.min.js"></script>
+    <script src="~/Content/js/imagesloaded.js"></script>
+    <script src="~/Content/js/smartresize.js"></script>
+    <script src="~/Content/src/jquery.skidder.js"></script>
+
+    <script type="text/javascript">
+            $('.slideshow').each(function () {
+                var $slideshow = $(this);
+                $slideshow.imagesLoaded(function () {
+                    $slideshow.skidder({
+                        slideClass: '.slide',
+                        animationType: 'css',
+                        scaleSlides: true,
+                        maxWidth: 1300,
+                        maxHeight: 500,
+                        paging: true,
+                        autoPaging: true,
+                        pagingWrapper: ".skidder-pager",
+                        pagingElement: ".skidder-pager-dot",
+                        swiping: true,
+                        leftaligned: false,
+                        cycle: true,
+                        jumpback: false,
+                        speed: 400,
+                        autoplay: false,
+                        autoplayResume: false,
+                        interval: 4000,
+                        transition: "slide",
+                        afterSliding: function () { },
+                        afterInit: function () { }
+                    });
+                });
+            });
+            $(window).smartresize(function () {
+                $('.slideshow').skidder('resize');
+            });
+    </script>
+    <div class="Product_Introduction">
+        <h2>Product Introduction</h2>
+        <table>
+            <tr>
+                <td><img src="~/Content/img/ooopic_1473663008.png" /></td>
+                <td><img src="~/Content/img/ooopic_1473663132.png" /></td>
+                <td><img src="~/Content/img/ooopic_1473663057.png" /></td>
+            </tr>
+            <tr>
+                <td>
+                    <h2>Models：<span class="yellow">Yellow</span></h2>
+                    <p>Quarterly price：70.00$</p>
+                    <p>Half year price：120.00$</p>
+                    <p>One year price：200.00$</p>
+                    <p>description：description goes here</p>
+                </td>
+                <td>
+                    <h2>Models：<span class="blue">Blue</span></h2>
+                    <p>Quarterly price：90.00$</p>
+                    <p>Half year price：160.00$</p>
+                    <p>One year price：300.00$</p>
+                    <p>description：description goes here</p>
+                </td>
+                <td>
+                    <h2>Models：<span class="red">Red</span></h2>
+                    <p>Quarterly price：280.00$</p>
+                    <p>Half year price：450.00$</p>
+                    <p>One year price：800.00$</p>
+                    <p>description：description goes here</p>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+</div>

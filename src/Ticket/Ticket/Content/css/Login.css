@@ -1,0 +1,156 @@
+*{
+	margin: 0 0;
+	padding: 0 0;
+}
+body{
+	background:url(../img/13.jpg);
+	font:12px/1.5 Tahoma, Helvetica, Arial, sans-serif
+}
+#top-link{
+	top: 0;
+	width: 100%;
+	height: 55px;
+	line-height: 55px;
+	font-size: 18px;
+	position: fixed;
+	background-color: #000000;
+	opacity:0.6;
+	border-bottom: 1px solid #000000;
+	z-index: 999;
+}
+#nav_img a{
+	background: url(../img/01.jpeg);
+	width: 190px;
+	height: 40px;
+	position: fixed;
+	left: 50px;
+	top:5px;
+}
+#top-link ul.link-left{
+	list-style: none;
+	margin-left: 300px;
+}
+#top-link ul.link-right{
+	list-style: none;
+	margin-left: 1100px;
+}
+#top-link ul li{
+	float: left;
+}
+#top-link ul li a{
+	color: #FFFFFF;
+	text-decoration: none;
+	font-weight: normal;
+	padding: 0 20px;	
+}
+#top-link ul li a:hover{
+	font-family: "comic sans ms";
+	font-size: 20px;
+	font-weight: bold;
+}
+
+#wrap{
+	width: 80%;
+	margin: 100px auto;
+}
+.head-title{
+	width: 30%;
+	margin: 0 auto;
+}
+.head-title h1{
+	text-align: center;
+	display: inline-block;
+	font-size: 40pt;
+	filter: dropshadow(color=#228B22,offX=5,offY=3,Positive=1);
+	width: 90%;
+	color: #FFFFFF;
+	line-height: 150%;
+	font-family: "comic sans ms",arial;
+	letter-spacing: 10px;
+}
+.content{
+	position: relative;
+	margin: 50px auto;
+	width: 35%;
+}
+.content input{
+	border: 2px solid #0000FF;
+	padding: 5px 0;
+	margin: 15px 0;
+	width: 98%;
+	height: 35px;
+	background-color: #fff;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+input[type=text],input[type=password]{
+	padding-left: 5px;
+}
+.login{
+	display: inline-block;
+    position: relative;
+	top: 30px;
+	left: 120px;
+	width: 120px;
+	height: 60px;
+	text-align: center;
+}
+.login input{
+	display: inline-block;
+	background-color: rgba(0,0,0,0.5);
+	font-size: 18px;
+	font-family: "comic sans ms","microsoft yahei",arial;
+	color: white;
+	border: none;
+	width: 110px;
+	line-height: 30px;
+	letter-spacing: 2px;
+}
+.login input:hover{
+	background-color: rgba(0,0,0,1);
+	transition: all 0.2s linear;
+}
+.login input:hover{
+	font-size: 20px;
+}
+.content a{
+	width: 100px;
+	font-size: 15px;
+	display: inline-block;
+	text-decoration: none;
+	font-weight: bold;
+	color: #FFFFFF;
+	font-family: kartika;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+}
+.rem{
+	width: 150px;
+}
+.rem input{
+	width: 15px;
+	height: 15px;
+	margin: 0 10px;
+}
+.rem span{
+	font-family: "微软雅黑";
+	font-size: 15px;
+	font-weight: bold;
+}
+#footer{
+	width: 100%;
+	position: relative;
+	top: 60px;
+}
+#footer span{
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+	position: relative;
+	font-family: arial;
+	font-size: 13px;
+	color: #696969;
+	padding: 0 0 10px 0;
+}

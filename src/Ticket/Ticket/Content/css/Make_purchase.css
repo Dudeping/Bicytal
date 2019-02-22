@@ -1,0 +1,290 @@
+*{
+	margin: 0 0;
+	padding: 0 0;
+}
+body{
+	background-color: #E6E7E8;
+	font:12px/1.5 Tahoma, Helvetica, Arial, sans-serif
+}
+#top-link{
+	top: 0;
+	width: 100%;
+	height: 55px;
+	line-height: 55px;
+	font-size: 18px;
+	position: fixed;
+	background-color: #000000;
+	opacity:0.6;
+	border-bottom: 1px solid #000000;
+	z-index: 999;
+}
+#nav_img a{
+	background: url(../img/01.jpeg);
+	width: 190px;
+	height: 40px;
+	position: fixed;
+	left: 50px;
+	top:5px;
+}
+#top-link ul.link-left{
+	list-style: none;
+	margin-left: 300px;
+}
+#top-link ul.link-right{
+	list-style: none;
+	margin-left: 1200px;
+}
+#top-link ul li{
+	float: left;
+}
+#top-link ul li a{
+	color: #FFFFFF;
+	outline: none;
+	text-decoration: none;
+	font-weight: normal;
+	padding: 0 20px;	
+}
+#top-link ul li a:hover{
+	font-family: "comic sans ms";
+	font-size: 20px;
+}
+
+a.a1:hover::before,a.a1:hover::after { position:fixed; }
+a.a1:hover::before { content: "\5B"; left: 310px; }
+a.a1:hover::after { content: "\5D"; right:  966px; }
+
+a.a2:hover::before,a.a2:hover::after { position:fixed; }
+a.a2:hover::before { content: "\5B"; left: 396px; }
+a.a2:hover::after { content: "\5D"; right:  880px; }
+
+a.a3:hover::before,a.a3:hover::after { position:fixed; }
+a.a3:hover::before { content: "\5B"; left: 482px; }
+a.a3:hover::after { content: "\5D"; right:  700px; }
+
+a.a4:hover::before,a.a4:hover::after { position:fixed; }
+a.a4:hover::before { content: "\5B"; left: 648px; }
+a.a4:hover::after { content: "\5D"; right:  545px; }
+
+a.a5:hover::before,a.a5:hover::after { position:fixed; }
+a.a5:hover::before { content: "\5B"; left: 810px; }
+a.a5:hover::after { content: "\5D"; right:  400px; }
+
+a.a6:hover::before,a.a6:hover::after { position:fixed; }
+a.a6:hover::before { content: "\5B"; left: 1210px; }
+a.a6:hover::after { content: "\5D"; right:  60px; }
+
+#content{
+	width: 90%;
+	position: relative;
+	margin: 100px auto;
+	overflow:hidden;
+}
+#content .title h1{
+	margin-top: 10px;
+	margin-bottom: 50px;
+	font-size:18pt;
+	color: #000;
+	font-family: "comic sans ms";
+	text-align: center;
+}
+#content .button1 table,#content .button2 table,#content .button3 table{
+	width: 100%;
+	margin-bottom: 50px;
+}
+#content .button1 td,#content .button2 td,#content .button3 td{
+	text-align: center;
+	padding: 10px 0;
+	font-size: 15px;
+	font-weight: bold;
+}
+#content .button1 button,#content .button2 button,#content .button3 button{
+	height: 25px;
+	padding: 0 5px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+}
+#content .button1 button{
+	background-color: rgba(255,255,0,0.7);
+	border: 1px solid yellow;
+}
+#content .button2 button{
+	background-color: rgba(0,0,255,0.7);
+	border: 1px solid blue;
+}
+#content .button3 button{
+	background-color: rgba(255,0,0,0.7);
+	border: 1px solid red;
+}
+#content .button1 button a,#content .button2 button a,#content .button3 button a{
+	text-decoration: none;
+	font-family: arial;
+	color: #000;
+	font-size: 14px;
+}
+#content .button1 button a:hover,#content .button2 button a:hover,#content .button3 button a:hover{
+	font-size: 16px;
+	font-weight: bold;
+}
+figure{
+	position: relative;
+	width: 30%;
+	height: 350px;
+	float: left;
+	overflow: hidden;
+	margin: 1.5%;
+}
+figure img{
+	width: 370px;
+	height: 350px;
+	opacity: 1;
+	transition: all 0.35s;
+}
+figcaption{
+	position: absolute;
+	top:50px;
+	left: 70px;
+	font-family: "comic sans ms";
+	font-size: 16px;
+}
+figcaption p{
+	font-size: 15px;
+}
+figure figcaption p,h2,div{transition: all 0.35s;}
+
+
+.text1 figcaption p{background: #FFFFFF;margin: 10px;text-align: center;transform: translate(-300px,0px);}
+.text1:hover figcaption p:nth-of-type(1){transition-delay:0.05s;}
+.text1:hover figcaption p:nth-of-type(2){transition-delay:0.1s;}
+.text1:hover figcaption p:nth-of-type(3){transition-delay:0.15s;}
+.text1 figcaption{padding: 20px;}
+.text1:hover figcaption p{transform: translate(0px,0px);}
+.text1:hover img{opacity: 0.6;transform: translate(-5px,0px);}
+
+.text2{background:#333333;}
+.text2 figcaption{width: 100%;height: 100%;}
+.text2 figcaption p{
+	margin-top:5%;
+	margin-left: 3%;
+	width: 60%;
+	background: #FFF;
+	color: #000;
+	font-weight: bold;
+	transform: translate(0px,50px);
+	opacity: 0;
+}
+.text2 figcaption h2{
+	margin-top:12%;
+	margin-left: 3%;
+	color: #000;
+	transform: translate(0px,50px);
+	opacity: 0;
+}
+.text2 figcaption div{border: 2px solid #FFFFFF;width: 80%;height: 80%;position:absolute;top:-20px;left: -30px;
+                       transform: translate(0px,-350px) rotate(0deg);}
+.text2:hover figcaption div{transform: translate(0px,0px) rotate(360deg);}
+.text2:hover figcaption p{transform: translate(0px,0px);opacity: 1;}
+.text2:hover figcaption h2{transform: translate(0px,0px);opacity: 1;}
+.text2:hover img{opacity: 0.7;transform: translate(-5px,0px);}
+
+.text3{background:#333333;}
+.text3 figcaption{width: 100%;height: 100%;}
+.text3 figcaption h2{margin-top: 15%; margin-left: 10%;color: #FFF;transform: scale(1.2,1.2);opacity: 0;}
+.text3 figcaption p{margin-top:10px; margin-left: 10%;color: #FFF;opacity: 0;transform: scale(1.2,1.2);opacity: 0;}
+.text3 figcaption div{border: 2px solid #FFF;width: 80%;height: 80%;position:absolute;top:-20px;left: -30px;
+					transform: scale(1.2,1.2);opacity: 0;}
+.text3:hover figcaption div{transform: scale(1,1);opacity: 1;}
+.text3:hover img{transform: scale(1.2,1.2);opacity: 0.6;}
+.text3:hover figcaption h2{transform: scale(1,1);opacity: 1;}
+.text3:hover figcaption p{opacity: 0;transform: scale(1,1);opacity: 1;}
+
+.back{
+	width: 300px;
+	height: 100px;
+	position: relative;
+	left: 80%;
+	top: -60px;
+}
+.back img{
+	display: inline-block;
+}
+.back span{
+	font-family: "comic sans ms",arial;
+	color: #000;
+	font-size: 16px;
+}
+#wrap{
+	width: 90%;
+	margin: 90px auto;
+	text-align: center;
+}
+#Personal_details,#Ticket_information,#Price{
+	margin: 20px auto;
+	text-align: center;
+}
+#Personal_details h2,#Ticket_information h2,#Price h2{
+	font-family: "comic sans ms","microsoft yahei",arial;
+	font-size: 24px;
+}
+#Personal_details table,#Ticket_information table,#Price table{
+	width: 70%;
+	border: 1px solid #000;
+	margin: 30px auto;
+}
+tr.box1{
+	background-color: #EFF9F9;
+}
+#Personal_details th,#Ticket_information th,#Price th{
+	font-size: 18px;
+	padding: 10px 5px 10px 18px;
+	text-align: right;
+	width: 200px;
+	height: 30px;
+}
+#Ticket_information th,#Price th{
+	text-align: left;
+}
+#Personal_details td,#Ticket_information td,#Price td{
+	font-size: 18px;
+	padding: 10px 20px;
+	width: 400px;
+	height: 40px;
+	font-family: arial;
+	text-align: left;
+}
+.pay{
+	margin: 50px auto;
+}
+.pay button{
+	background-color: rgba(0,0,255,0.6);
+	border: 1px solid rgba(0,0,255,0.6);
+	height: 25px;
+	width: 100px;
+}
+.pay span{
+	letter-spacing: 1px;
+	font: "comic sans ms","microsoft yahei",arial;
+	font-size: 16px;
+}
+.pay button:hover{
+	height: 28px;
+	width: 110px;
+}
+.pay span:hover{
+	font-size: 18px;
+	font-weight: bold;
+}
+#footer,#foot{
+	position: relative;
+	width: 100%;
+}
+#footer span,#foot span{
+	width: 100%;
+	text-align: center;
+	display: inline-block;
+	position: relative;
+	font-family: arial;
+	font-size: 13px;
+	color: #696969;
+	padding: 0 0 10px 0;
+}

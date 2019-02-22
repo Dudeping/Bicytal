@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div id="top-link">
+        <div id="nav_img"><a href="ParkingPermit.html" title="Buy ParkingPermit"></a></div>
+        <ul class="link-left">
+            <li><a href="/Home/Index" class="a1">Index</a></li>
+            <li><a href="/Home/About" class="a2">About</a></li>
+            @if (!Request.IsAuthenticated)
+            {
+                <li><a href="/Home/Contact" class="a3">Contact</a></li>
+            }
+            @if (Request.IsAuthenticated)
+            {
+                <li><a href="/Users/Index" class="a3">Personal Details</a></li>
+                <li><a href="/Users/MyPurchases" class="a4">My Purchases</a></li>
+                <li><a href="/Users/MakePurchase" class="a5">Make Purchase</a></li>
+            }
+
+        </ul>
+        <ul class="link-right">
+            @if (Request.IsAuthenticated)
+            {
+                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <li><a href="javascript:document.getElementById('logoutForm').submit()" class="a6">Logout</a></li>
+                }
+            }
+            else
+            {
+                <li><a href="/Account/Login" class="a4">Login</a></li>
+                <li><a href="/Account/Register" class="a5">Register</a></li>
+            }
+        </ul>
+    </div>
+        @RenderBody()
+    <div id="footer">
+        <span>@DateTime.Now.Year - Wing Buy - @ViewBag.Title</span>
+    </div>
+</body>
+</html>

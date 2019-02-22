@@ -1,0 +1,38 @@
+﻿@model Ticket.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+<link href="~/Content/css/Register.css" rel="stylesheet" />
+
+<div id="wrap">
+    <div class="head">
+        <div class="head-title">
+            <h1>Register</h1>
+        </div>
+    </div>
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        <div id="page">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+            <table>
+                <tr>
+                    <th>username</th>
+                    <td>@Html.TextBoxFor(m => m.Email, new { placeholder = "uesname*" })</td>
+                </tr>
+                <tr>
+                    <th>password</th>
+                    <td>@Html.PasswordFor(m => m.Password, new { placeholder = "please set password*" })</td>
+                </tr>
+                <tr>
+                    <th>confirm password</th>
+                    <td>@Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "please confirm password*" })</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="submit">
+            <input type="submit" value="Submit" />
+        </div>
+    }
+</div>

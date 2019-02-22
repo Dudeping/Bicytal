@@ -1,0 +1,1604 @@
+﻿@{
+    ViewBag.Title = "Plot Chart";
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>Plot Chart</title>
+
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="~/Content/User/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="~/Content/User/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+
+    <link href="~/Content/User/css/plugins/iCheck/custom.css" rel="stylesheet">
+
+    <link href="~/Content/User/css/plugins/chosen/chosen.css" rel="stylesheet">
+
+    <link href="~/Content/User/css/plugins/colorpicker/css/bootstrap-colorpicker.min.css" rel="stylesheet">
+
+    <link href="~/Content/User/css/plugins/cropper/cropper.min.css" rel="stylesheet">
+
+    <link href="~/Content/User/css/plugins/switchery/switchery.css" rel="stylesheet">
+
+    <link href="~/Content/User/css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet">
+
+    <link href="~/Content/User/css/plugins/nouslider/jquery.nouislider.css" rel="stylesheet">
+
+    <link href="~/Content/User/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+
+    <link href="~/Content/User/css/plugins/ionRangeSlider/ion.rangeSlider.css" rel="stylesheet">
+    <link href="~/Content/User/css/plugins/ionRangeSlider/ion.rangeSlider.skinFlat.css" rel="stylesheet">
+
+    <link href="~/Content/User/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+
+    <link href="~/Content/User/css/plugins/clockpicker/clockpicker.css" rel="stylesheet">
+    <link href="~/Content/User/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+
+    <link href="~/Content/User/css/animate.css" rel="stylesheet">
+    <link href="~/Content/User/css/style.css?v=4.1.0" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Select</h5>
+                    </div>
+
+                    <form action="~/Staffs/PlotChart" method="get">
+                        <div class="ibox-content">
+                            <div class="form-group">
+                                <label class="font-noraml">The chart type</label>
+                                <div class="input-group">
+                                    <select name="type" data-placeholder="Column1" class="chosen-select" style="width:350px;" tabindex="2">
+                                        @if (ViewBag.plotType == "Column")
+                                        {
+                                            <option value="Column">Column</option>
+                                            <option value="Pie" hassubinfo="true">Pie</option>
+                                            <option value="Line" hassubinfo="true">Line</option>
+                                        }
+                                        @if (ViewBag.plotType == "Pie")
+                                        {
+                                            <option value="Pie">Pie</option>
+                                            <option value="Column" hassubinfo="true">Column</option>
+                                            <option value="Line" hassubinfo="true">Line</option>
+                                        }
+                                        @if (ViewBag.plotType == "Line")
+                                        {
+                                            <option value="Line">Line</option>
+                                            <option value="Column" hassubinfo="true">Column</option>
+                                            <option value="Pie" hassubinfo="true">Pie</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="font-noraml">The chart dimension</label>
+                                <div class="input-group">
+                                    <select name="dim" data-placeholder="2D1" class="chosen-select" style="width:350px;" tabindex="2">
+                                        @if (ViewBag.dim == "2D")
+                                        {
+                                            <option value="2D">2D</option>
+                                            <option value="3D" hassubinfo="true">3D</option>
+                                        }
+                                        @if (ViewBag.dim == "3D")
+                                        {
+                                            <option value="3D">3D</option>
+                                            <option value="2D" hassubinfo="true">2D</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <p>
+                                <button type="submit" class="btn btn-outline btn-default">View</button>
+                            </p>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        @if (ViewBag.plotType == "Column")
+        {
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>Column</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <p>
+                                x: type y: number<br />
+                                @{int i = 0;}
+                                @foreach (var item in ViewBag.permitType)
+                                {
+                                    i++;
+                                    @i 
+                                    <span>: </span>
+                                    @item.Type;
+                                    <span>&nbsp;&nbsp;</span>
+                                }
+                            </p>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="flot-chart">
+                                <div class="flot-chart-content" id="flot-bar-chart"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        @if (ViewBag.plotType == "Line")
+        {
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>Line</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <p>
+                                x: type y: number<br />
+                                @{int i = 0;}
+                                @foreach (var item in ViewBag.permitType)
+                                {
+                                    i++;
+                                    @i
+                                    <span>: </span>
+                                    @item.Type;
+                                    <span>&nbsp;&nbsp;</span>
+                                }
+                            </p>
+                        </div>
+                        <div class="ibox-content">
+
+                            <div class="flot-chart">
+                                <div class="flot-chart-content" id="flot-line-chart"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        @if (ViewBag.plotType == "Pie")
+        {
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>Pie</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="flot-chart">
+                                <div class="flot-chart-content" id="flot-pie-chart"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        @foreach (var item in @ViewBag.permitType)
+        {
+            <div class="permitType" hidden="hidden">@item.Type</div>
+            <div class="permitNum" hidden="hidden">@ViewBag.PurNum[item.Type]</div>
+        }
+
+    </div>
+
+    <script src="~/Content/User/js/jquery.min.js?v=2.1.4"></script>
+    <script src="~/Content/User/js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="~/Content/User/js/content.js?v=1.0.0"></script>
+
+    <script src="~/Content/User/js/plugins/flot/jquery.flot.js"></script>
+    <script src="~/Content/User/js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+    <script src="~/Content/User/js/plugins/flot/jquery.flot.resize.js"></script>
+    <script src="~/Content/User/js/plugins/flot/jquery.flot.pie.js"></script>
+    <script src="~/Content/User/js/content.js?v=1.0.0"></script>
+
+    @if (ViewBag.plotType == "Column")
+    {
+            <script>
+                $(function () {
+                    var barOptions = {
+                        series: {
+                            bars: {
+                                show: true,
+                                barWidth: 0.6,
+                                fill: true,
+                                fillColor: {
+                                    colors: [{
+                                        opacity: 0.8
+                                    }, {
+                                        opacity: 0.8
+                                    }]
+                                }
+                            }
+                        },
+                        xaxis: {
+                            tickDecimals: 0
+                        },
+                        colors: ["#1ab394"],
+                        grid: {
+                            color: "#999999",
+                            hoverable: true,
+                            clickable: true,
+                            tickColor: "#D4D4D4",
+                            borderWidth: 0
+                        },
+                        legend: {
+                            show: false
+                        },
+                        tooltip: true,
+                        tooltipOpts: {
+                            content: "x: %x, y: %y"
+                        }
+                    };
+
+                    var permitNum = document.getElementsByClassName("permitNum");
+                    var anum = new Array();
+                    for (var i = 0; i < permitNum.length; i++) {
+                        anum[i] = parseInt(permitNum[i].textContent);
+                    }
+
+                    var barData;
+                    if (permitNum.length == 0) {
+                        barData = {
+                            label: "bar",
+                            data: []
+                        };
+                    }
+                    else if (permitNum.length == 1) {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]]
+                            ]
+                        };
+                    }
+                    else if (permitNum.length == 2) {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]],
+                                [2, anum[1]]
+                            ]
+                        };
+                    }
+                    else if (permitNum.length == 3) {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]],
+                                [2, anum[1]],
+                                [3, anum[2]]
+                            ]
+                        };
+                    }
+                    else if (permitNum.length == 4) {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]],
+                                [2, anum[1]],
+                                [3, anum[2]],
+                                [4, anum[3]]
+                            ]
+                        };
+                    }
+                    else if (permitNum.length == 5) {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]],
+                                [2, anum[1]],
+                                [3, anum[2]],
+                                [4, anum[3]],
+                                [5, anum[4]]
+                            ]
+                        };
+                    }
+                    else if (permitNum.length == 6) {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]],
+                                [2, anum[1]],
+                                [3, anum[2]],
+                                [4, anum[3]],
+                                [5, anum[4]],
+                                [6, anum[5]]
+                            ]
+                        };
+                    }
+                    else if (permitNum.length == 7) {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]],
+                                [2, anum[1]],
+                                [3, anum[2]],
+                                [4, anum[3]],
+                                [5, anum[4]],
+                                [6, anum[5]],
+                                [7, anum[6]]
+                            ]
+                        };
+                    }
+                    else if (permitNum.length == 8) {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]],
+                                [2, anum[1]],
+                                [3, anum[2]],
+                                [4, anum[3]],
+                                [5, anum[4]],
+                                [6, anum[5]],
+                                [7, anum[6]],
+                                [8, anum[7]]
+                            ]
+                        };
+                    }
+                    else if (permitNum.length == 9) {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]],
+                                [2, anum[1]],
+                                [3, anum[2]],
+                                [4, anum[3]],
+                                [5, anum[4]],
+                                [6, anum[5]],
+                                [7, anum[6]],
+                                [8, anum[7]],
+                                [9, anum[8]]
+                            ]
+                        };
+                    }
+                    else if (permitNum.length == 10) {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]],
+                                [2, anum[1]],
+                                [3, anum[2]],
+                                [4, anum[3]],
+                                [5, anum[4]],
+                                [6, anum[5]],
+                                [7, anum[6]],
+                                [8, anum[7]],
+                                [9, anum[8]],
+                                [10, anum[9]]
+                            ]
+                        };
+                    }
+                    else if (permitNum.length == 11) {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]],
+                                [2, anum[1]],
+                                [3, anum[2]],
+                                [4, anum[3]],
+                                [5, anum[4]],
+                                [6, anum[5]],
+                                [7, anum[6]],
+                                [8, anum[7]],
+                                [9, anum[8]],
+                                [10, anum[9]],
+                                [11, anum[10]]
+                            ]
+                        };
+                    }
+                    else if (permitNum.length == 12) {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]],
+                                [2, anum[1]],
+                                [3, anum[2]],
+                                [4, anum[3]],
+                                [5, anum[4]],
+                                [6, anum[5]],
+                                [7, anum[6]],
+                                [8, anum[7]],
+                                [9, anum[8]],
+                                [10, anum[9]],
+                                [11, anum[10]],
+                                [12, anum[11]]
+                            ]
+                        };
+                    }
+                    else if (permitNum.length == 13) {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]],
+                                [2, anum[1]],
+                                [3, anum[2]],
+                                [4, anum[3]],
+                                [5, anum[4]],
+                                [6, anum[5]],
+                                [7, anum[6]],
+                                [8, anum[7]],
+                                [9, anum[8]],
+                                [10, anum[9]],
+                                [11, anum[10]],
+                                [12, anum[11]],
+                                [13, anum[12]]
+                            ]
+                        };
+                    }
+                    else if (permitNum.length == 14) {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]],
+                                [2, anum[1]],
+                                [3, anum[2]],
+                                [4, anum[3]],
+                                [5, anum[4]],
+                                [6, anum[5]],
+                                [7, anum[6]],
+                                [8, anum[7]],
+                                [9, anum[8]],
+                                [10, anum[9]],
+                                [11, anum[10]],
+                                [12, anum[11]],
+                                [13, anum[12]],
+                                [14, anum[13]]
+                            ]
+                        };
+                    }
+                    else if (permitNum.length == 15) {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]],
+                                [2, anum[1]],
+                                [3, anum[2]],
+                                [4, anum[3]],
+                                [5, anum[4]],
+                                [6, anum[5]],
+                                [7, anum[6]],
+                                [8, anum[7]],
+                                [9, anum[8]],
+                                [10, anum[9]],
+                                [11, anum[10]],
+                                [12, anum[11]],
+                                [13, anum[12]],
+                                [14, anum[13]],
+                                [15, anum[14]]
+                            ]
+                        };
+                    }
+                    else if (permitNum.length == 16) {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]],
+                                [2, anum[1]],
+                                [3, anum[2]],
+                                [4, anum[3]],
+                                [5, anum[4]],
+                                [6, anum[5]],
+                                [7, anum[6]],
+                                [8, anum[7]],
+                                [9, anum[8]],
+                                [10, anum[9]],
+                                [11, anum[10]],
+                                [12, anum[11]],
+                                [13, anum[12]],
+                                [14, anum[13]],
+                                [15, anum[14]],
+                                [16, anum[15]]
+                            ]
+                        };
+                    }
+                    else if (permitNum.length == 17) {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]],
+                                [2, anum[1]],
+                                [3, anum[2]],
+                                [4, anum[3]],
+                                [5, anum[4]],
+                                [6, anum[5]],
+                                [7, anum[6]],
+                                [8, anum[7]],
+                                [9, anum[8]],
+                                [10, anum[9]],
+                                [11, anum[10]],
+                                [12, anum[11]],
+                                [13, anum[12]],
+                                [14, anum[13]],
+                                [15, anum[14]],
+                                [16, anum[15]],
+                                [17, anum[16]]
+                            ]
+                        };
+                    }
+                    else if (permitNum.length == 18) {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]],
+                                [2, anum[1]],
+                                [3, anum[2]],
+                                [4, anum[3]],
+                                [5, anum[4]],
+                                [6, anum[5]],
+                                [7, anum[6]],
+                                [8, anum[7]],
+                                [9, anum[8]],
+                                [10, anum[9]],
+                                [11, anum[10]],
+                                [12, anum[11]],
+                                [13, anum[12]],
+                                [14, anum[13]],
+                                [15, anum[14]],
+                                [16, anum[15]],
+                                [17, anum[16]],
+                                [18, anum[17]]
+                            ]
+                        };
+                    }
+                    else if (permitNum.length == 19) {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]],
+                                [2, anum[1]],
+                                [3, anum[2]],
+                                [4, anum[3]],
+                                [5, anum[4]],
+                                [6, anum[5]],
+                                [7, anum[6]],
+                                [8, anum[7]],
+                                [9, anum[8]],
+                                [10, anum[9]],
+                                [11, anum[10]],
+                                [12, anum[11]],
+                                [13, anum[12]],
+                                [14, anum[13]],
+                                [15, anum[14]],
+                                [16, anum[15]],
+                                [17, anum[16]],
+                                [18, anum[17]],
+                                [19, anum[18]]
+                            ]
+                        };
+                    }
+                    else if (permitNum.length == 20) {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]],
+                                [2, anum[1]],
+                                [3, anum[2]],
+                                [4, anum[3]],
+                                [5, anum[4]],
+                                [6, anum[5]],
+                                [7, anum[6]],
+                                [8, anum[7]],
+                                [9, anum[8]],
+                                [10, anum[9]],
+                                [11, anum[10]],
+                                [12, anum[11]],
+                                [13, anum[12]],
+                                [14, anum[13]],
+                                [15, anum[14]],
+                                [16, anum[15]],
+                                [17, anum[16]],
+                                [18, anum[17]],
+                                [19, anum[18]],
+                                [20, anum[19]]
+                            ]
+                        };
+                    }
+                    else {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]],
+                                [2, anum[1]],
+                                [3, anum[2]],
+                                [4, anum[3]],
+                                [5, anum[4]],
+                                [6, anum[5]],
+                                [7, anum[6]],
+                                [8, anum[7]],
+                                [9, anum[8]],
+                                [10, anum[9]],
+                                [11, anum[10]],
+                                [12, anum[11]],
+                                [13, anum[12]],
+                                [14, anum[13]],
+                                [15, anum[14]],
+                                [16, anum[15]],
+                                [17, anum[16]],
+                                [18, anum[17]],
+                                [19, anum[18]],
+                                [20, anum[19]],
+                                [21, anum[20]]
+                            ]
+                        };
+                    }
+                    $.plot($("#flot-bar-chart"), [barData], barOptions);
+
+                });
+            </script>
+    }
+    @if (ViewBag.plotType == "Line")
+    {
+            <script>
+                $(function () {
+                    var barOptions = {
+                        series: {
+                            lines: {
+                                show: true,
+                                lineWidth: 2,
+                                fill: true,
+                                fillColor: {
+                                    colors: [{
+                                        opacity: 0.0
+                                    }, {
+                                        opacity: 0.0
+                                    }]
+                                }
+                            }
+                        },
+                        xaxis: {
+                            tickDecimals: 0
+                        },
+                        colors: ["#1ab394"],
+                        grid: {
+                            color: "#999999",
+                            hoverable: true,
+                            clickable: true,
+                            tickColor: "#D4D4D4",
+                            borderWidth: 0
+                        },
+                        legend: {
+                            show: false
+                        },
+                        tooltip: true,
+                        tooltipOpts: {
+                            content: "x: %x, y: %y"
+                        }
+                    };
+                    var permitNum = document.getElementsByClassName("permitNum");
+                    var anum = new Array();
+                    for (var i = 0; i < permitNum.length; i++) {
+                        anum[i] = parseInt(permitNum[i].textContent);
+                    }
+
+                    var barData;
+                    if (permitNum.length == 0) {
+                        barData = {
+                            label: "bar",
+                            data: []
+                        };
+                    }
+
+                    else if (permitNum.length == 1) {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]]
+                            ]
+                        };
+                    }
+                    else if (permitNum.length == 2) {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]],
+                                [2, anum[1]]
+                            ]
+                        };
+                    }
+                    else if (permitNum.length == 3) {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]],
+                                [2, anum[1]],
+                                [3, anum[2]]
+                            ]
+                        };
+                    }
+                    else if (permitNum.length == 4) {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]],
+                                [2, anum[1]],
+                                [3, anum[2]],
+                                [4, anum[3]]
+                            ]
+                        };
+                    }
+                    else if (permitNum.length == 5) {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]],
+                                [2, anum[1]],
+                                [3, anum[2]],
+                                [4, anum[3]],
+                                [5, anum[4]]
+                            ]
+                        };
+                    }
+                    else if (permitNum.length == 6) {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]],
+                                [2, anum[1]],
+                                [3, anum[2]],
+                                [4, anum[3]],
+                                [5, anum[4]],
+                                [6, anum[5]]
+                            ]
+                        };
+                    }
+                    else if (permitNum.length == 7) {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]],
+                                [2, anum[1]],
+                                [3, anum[2]],
+                                [4, anum[3]],
+                                [5, anum[4]],
+                                [6, anum[5]],
+                                [7, anum[6]]
+                            ]
+                        };
+                    }
+                    else if (permitNum.length == 8) {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]],
+                                [2, anum[1]],
+                                [3, anum[2]],
+                                [4, anum[3]],
+                                [5, anum[4]],
+                                [6, anum[5]],
+                                [7, anum[6]],
+                                [8, anum[7]]
+                            ]
+                        };
+                    }
+                    else if (permitNum.length == 9) {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]],
+                                [2, anum[1]],
+                                [3, anum[2]],
+                                [4, anum[3]],
+                                [5, anum[4]],
+                                [6, anum[5]],
+                                [7, anum[6]],
+                                [8, anum[7]],
+                                [9, anum[8]]
+                            ]
+                        };
+                    }
+                    else if (permitNum.length == 10) {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]],
+                                [2, anum[1]],
+                                [3, anum[2]],
+                                [4, anum[3]],
+                                [5, anum[4]],
+                                [6, anum[5]],
+                                [7, anum[6]],
+                                [8, anum[7]],
+                                [9, anum[8]],
+                                [10, anum[9]]
+                            ]
+                        };
+                    }
+                    else if (permitNum.length == 11) {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]],
+                                [2, anum[1]],
+                                [3, anum[2]],
+                                [4, anum[3]],
+                                [5, anum[4]],
+                                [6, anum[5]],
+                                [7, anum[6]],
+                                [8, anum[7]],
+                                [9, anum[8]],
+                                [10, anum[9]],
+                                [11, anum[10]]
+                            ]
+                        };
+                    }
+                    else if (permitNum.length == 12) {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]],
+                                [2, anum[1]],
+                                [3, anum[2]],
+                                [4, anum[3]],
+                                [5, anum[4]],
+                                [6, anum[5]],
+                                [7, anum[6]],
+                                [8, anum[7]],
+                                [9, anum[8]],
+                                [10, anum[9]],
+                                [11, anum[10]],
+                                [12, anum[11]]
+                            ]
+                        };
+                    }
+                    else if (permitNum.length == 13) {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]],
+                                [2, anum[1]],
+                                [3, anum[2]],
+                                [4, anum[3]],
+                                [5, anum[4]],
+                                [6, anum[5]],
+                                [7, anum[6]],
+                                [8, anum[7]],
+                                [9, anum[8]],
+                                [10, anum[9]],
+                                [11, anum[10]],
+                                [12, anum[11]],
+                                [13, anum[12]]
+                            ]
+                        };
+                    }
+                    else if (permitNum.length == 14) {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]],
+                                [2, anum[1]],
+                                [3, anum[2]],
+                                [4, anum[3]],
+                                [5, anum[4]],
+                                [6, anum[5]],
+                                [7, anum[6]],
+                                [8, anum[7]],
+                                [9, anum[8]],
+                                [10, anum[9]],
+                                [11, anum[10]],
+                                [12, anum[11]],
+                                [13, anum[12]],
+                                [14, anum[13]]
+                            ]
+                        };
+                    }
+                    else if (permitNum.length == 15) {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]],
+                                [2, anum[1]],
+                                [3, anum[2]],
+                                [4, anum[3]],
+                                [5, anum[4]],
+                                [6, anum[5]],
+                                [7, anum[6]],
+                                [8, anum[7]],
+                                [9, anum[8]],
+                                [10, anum[9]],
+                                [11, anum[10]],
+                                [12, anum[11]],
+                                [13, anum[12]],
+                                [14, anum[13]],
+                                [15, anum[14]]
+                            ]
+                        };
+                    }
+                    else if (permitNum.length == 16) {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]],
+                                [2, anum[1]],
+                                [3, anum[2]],
+                                [4, anum[3]],
+                                [5, anum[4]],
+                                [6, anum[5]],
+                                [7, anum[6]],
+                                [8, anum[7]],
+                                [9, anum[8]],
+                                [10, anum[9]],
+                                [11, anum[10]],
+                                [12, anum[11]],
+                                [13, anum[12]],
+                                [14, anum[13]],
+                                [15, anum[14]],
+                                [16, anum[15]]
+                            ]
+                        };
+                    }
+                    else if (permitNum.length == 17) {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]],
+                                [2, anum[1]],
+                                [3, anum[2]],
+                                [4, anum[3]],
+                                [5, anum[4]],
+                                [6, anum[5]],
+                                [7, anum[6]],
+                                [8, anum[7]],
+                                [9, anum[8]],
+                                [10, anum[9]],
+                                [11, anum[10]],
+                                [12, anum[11]],
+                                [13, anum[12]],
+                                [14, anum[13]],
+                                [15, anum[14]],
+                                [16, anum[15]],
+                                [17, anum[16]]
+                            ]
+                        };
+                    }
+                    else if (permitNum.length == 18) {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]],
+                                [2, anum[1]],
+                                [3, anum[2]],
+                                [4, anum[3]],
+                                [5, anum[4]],
+                                [6, anum[5]],
+                                [7, anum[6]],
+                                [8, anum[7]],
+                                [9, anum[8]],
+                                [10, anum[9]],
+                                [11, anum[10]],
+                                [12, anum[11]],
+                                [13, anum[12]],
+                                [14, anum[13]],
+                                [15, anum[14]],
+                                [16, anum[15]],
+                                [17, anum[16]],
+                                [18, anum[17]]
+                            ]
+                        };
+                    }
+                    else if (permitNum.length == 19) {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]],
+                                [2, anum[1]],
+                                [3, anum[2]],
+                                [4, anum[3]],
+                                [5, anum[4]],
+                                [6, anum[5]],
+                                [7, anum[6]],
+                                [8, anum[7]],
+                                [9, anum[8]],
+                                [10, anum[9]],
+                                [11, anum[10]],
+                                [12, anum[11]],
+                                [13, anum[12]],
+                                [14, anum[13]],
+                                [15, anum[14]],
+                                [16, anum[15]],
+                                [17, anum[16]],
+                                [18, anum[17]],
+                                [19, anum[18]]
+                            ]
+                        };
+                    }
+                    else if (permitNum.length == 20) {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]],
+                                [2, anum[1]],
+                                [3, anum[2]],
+                                [4, anum[3]],
+                                [5, anum[4]],
+                                [6, anum[5]],
+                                [7, anum[6]],
+                                [8, anum[7]],
+                                [9, anum[8]],
+                                [10, anum[9]],
+                                [11, anum[10]],
+                                [12, anum[11]],
+                                [13, anum[12]],
+                                [14, anum[13]],
+                                [15, anum[14]],
+                                [16, anum[15]],
+                                [17, anum[16]],
+                                [18, anum[17]],
+                                [19, anum[18]],
+                                [20, anum[19]]
+                            ]
+                        };
+                    }
+                    else {
+                        barData = {
+                            label: "bar",
+                            data: [
+                                [1, anum[0]],
+                                [2, anum[1]],
+                                [3, anum[2]],
+                                [4, anum[3]],
+                                [5, anum[4]],
+                                [6, anum[5]],
+                                [7, anum[6]],
+                                [8, anum[7]],
+                                [9, anum[8]],
+                                [10, anum[9]],
+                                [11, anum[10]],
+                                [12, anum[11]],
+                                [13, anum[12]],
+                                [14, anum[13]],
+                                [15, anum[14]],
+                                [16, anum[15]],
+                                [17, anum[16]],
+                                [18, anum[17]],
+                                [19, anum[18]],
+                                [20, anum[19]],
+                                [21, anum[20]]
+                            ]
+                        };
+                    }
+                    $.plot($("#flot-line-chart"), [barData], barOptions);
+
+                });
+            </script>
+    }
+
+    @if (ViewBag.plotType == "Pie")
+    {
+
+        <script>
+            $(function () {
+                var permitNum = document.getElementsByClassName("permitNum");
+                var anum = new Array();
+                var permitType = document.getElementsByClassName("permitType");
+                var atype = new Array();
+                for (var i = 0; i < permitNum.length; i++) {
+                    anum[i] = parseInt(permitNum[i].textContent);
+                    atype[i] = permitType[i].textContent;
+                }
+
+                var data;
+                if (permitType.length == 0)
+                {
+                    data = [];
+                }
+                else if (permitType.length == 1)
+                {
+                    data = [{
+                        label: atype[0],
+                        data: anum[0],
+                        color: "#d3d3d3",
+                    }];
+                }
+                else if (permitType.length == 2) {
+                    data = [{
+                        label: atype[0],
+                        data: anum[0],
+                        color: "#d3d3d3",
+                    }, {
+                        label: atype[1],
+                        data: anum[1],
+                        color: "#bababa",
+                    }];
+                }
+                else if (permitType.length == 3) {
+                    data = [{
+                        label: atype[0],
+                        data: anum[0],
+                        color: "#d3d3d3",
+                    }, {
+                        label: atype[1],
+                        data: anum[1],
+                        color: "#bababa",
+                    }, {
+                        label: atype[2],
+                        data: anum[2],
+                        color: "#79d2c0",
+                    }];
+                } else if (permitType.length == 4) {
+                    data = [{
+                        label: atype[0],
+                        data: anum[0],
+                        color: "#d3d3d3",
+                    }, {
+                        label: atype[1],
+                        data: anum[1],
+                        color: "#bababa",
+                    }, {
+                        label: atype[2],
+                        data: anum[2],
+                        color: "#79d2c0",
+                    }, {
+                        label: atype[3],
+                        data: anum[3],
+                        color: "#1ab394",
+                    }];
+                } else if (permitType.length == 5) {
+                    data = [{
+                        label: atype[0],
+                        data: anum[0],
+                        color: "#d3d3d3",
+                    }, {
+                        label: atype[1],
+                        data: anum[1],
+                        color: "#bababa",
+                    }, {
+                        label: atype[2],
+                        data: anum[2],
+                        color: "#79d2c0",
+                    }, {
+                        label: atype[3],
+                        data: anum[3],
+                        color: "#1ab394",
+                    }, {
+                        label: atype[4],
+                        data: anum[4],
+                        color: "#d3d3d3",
+                    }];
+                } else if (permitType.length == 6) {
+                    data = [{
+                        label: atype[0],
+                        data: anum[0],
+                        color: "#d3d3d3",
+                    }, {
+                        label: atype[1],
+                        data: anum[1],
+                        color: "#bababa",
+                    }, {
+                        label: atype[2],
+                        data: anum[2],
+                        color: "#79d2c0",
+                    }, {
+                        label: atype[3],
+                        data: anum[3],
+                        color: "#1ab394",
+                    }, {
+                        label: atype[4],
+                        data: anum[4],
+                        color: "#d3d3d3",
+                    }, {
+                        label: atype[5],
+                        data: anum[5],
+                        color: "#bababa",
+                    }];
+                } else if (permitType.length == 7) {
+                    data = [{
+                        label: atype[0],
+                        data: anum[0],
+                        color: "#d3d3d3",
+                    }, {
+                        label: atype[1],
+                        data: anum[1],
+                        color: "#bababa",
+                    }, {
+                        label: atype[2],
+                        data: anum[2],
+                        color: "#79d2c0",
+                    }, {
+                        label: atype[3],
+                        data: anum[3],
+                        color: "#1ab394",
+                    }, {
+                        label: atype[4],
+                        data: anum[4],
+                        color: "#d3d3d3",
+                    }, {
+                        label: atype[5],
+                        data: anum[5],
+                        color: "#bababa",
+                    }, {
+                        label: atype[6],
+                        data: anum[6],
+                        color: "#79d2c0",
+                    }];
+                } else if (permitType.length == 8) {
+                    data = [{
+                        label: atype[0],
+                        data: anum[0],
+                        color: "#d3d3d3",
+                    }, {
+                        label: atype[1],
+                        data: anum[1],
+                        color: "#bababa",
+                    }, {
+                        label: atype[2],
+                        data: anum[2],
+                        color: "#79d2c0",
+                    }, {
+                        label: atype[3],
+                        data: anum[3],
+                        color: "#1ab394",
+                    }, {
+                        label: atype[4],
+                        data: anum[4],
+                        color: "#d3d3d3",
+                    }, {
+                        label: atype[5],
+                        data: anum[5],
+                        color: "#bababa",
+                    }, {
+                        label: atype[7],
+                        data: anum[7],
+                        color: "#79d2c0",
+                    }];
+                } else if (permitType.length == 9) {
+                    data = [{
+                        label: atype[0],
+                        data: anum[0],
+                        color: "#d3d3d3",
+                    }, {
+                        label: atype[1],
+                        data: anum[1],
+                        color: "#bababa",
+                    }, {
+                        label: atype[2],
+                        data: anum[2],
+                        color: "#79d2c0",
+                    }, {
+                        label: atype[3],
+                        data: anum[3],
+                        color: "#1ab394",
+                    }, {
+                        label: atype[4],
+                        data: anum[4],
+                        color: "#d3d3d3",
+                    }, {
+                        label: atype[5],
+                        data: anum[5],
+                        color: "#bababa",
+                    }, {
+                        label: atype[7],
+                        data: anum[7],
+                        color: "#79d2c0",
+                    }, {
+                        label: atype[8],
+                        data: anum[8],
+                        color: "#1ab394",
+                    }];
+                } else if (permitType.length == 10) {
+                    data = [{
+                        label: atype[0],
+                        data: anum[0],
+                        color: "#d3d3d3",
+                    }, {
+                        label: atype[1],
+                        data: anum[1],
+                        color: "#bababa",
+                    }, {
+                        label: atype[2],
+                        data: anum[2],
+                        color: "#79d2c0",
+                    }, {
+                        label: atype[3],
+                        data: anum[3],
+                        color: "#1ab394",
+                    }, {
+                        label: atype[4],
+                        data: anum[4],
+                        color: "#d3d3d3",
+                    }, {
+                        label: atype[5],
+                        data: anum[5],
+                        color: "#bababa",
+                    }, {
+                        label: atype[7],
+                        data: anum[7],
+                        color: "#79d2c0",
+                    }, {
+                        label: atype[9],
+                        data: anum[9],
+                        color: "#1ab394",
+                    }];
+                } else if (permitType.length == 11) {
+                    data = [{
+                        label: atype[0],
+                        data: anum[0],
+                        color: "#d3d3d3",
+                    }, {
+                        label: atype[1],
+                        data: anum[1],
+                        color: "#bababa",
+                    }, {
+                        label: atype[2],
+                        data: anum[2],
+                        color: "#79d2c0",
+                    }, {
+                        label: atype[3],
+                        data: anum[3],
+                        color: "#1ab394",
+                    }, {
+                        label: atype[4],
+                        data: anum[4],
+                        color: "#d3d3d3",
+                    }, {
+                        label: atype[5],
+                        data: anum[5],
+                        color: "#bababa",
+                    }, {
+                        label: atype[7],
+                        data: anum[7],
+                        color: "#79d2c0",
+                    }, {
+                        label: atype[9],
+                        data: anum[9],
+                        color: "#1ab394",
+                    }, {
+                        label: atype[10],
+                        data: anum[10],
+                        color: "#d3d3d3",
+                    }];
+                } else if (permitType.length == 12) {
+                    data = [{
+                        label: atype[0],
+                        data: anum[0],
+                        color: "#d3d3d3",
+                    }, {
+                        label: atype[1],
+                        data: anum[1],
+                        color: "#bababa",
+                    }, {
+                        label: atype[2],
+                        data: anum[2],
+                        color: "#79d2c0",
+                    }, {
+                        label: atype[3],
+                        data: anum[3],
+                        color: "#1ab394",
+                    }, {
+                        label: atype[4],
+                        data: anum[4],
+                        color: "#d3d3d3",
+                    }, {
+                        label: atype[5],
+                        data: anum[5],
+                        color: "#bababa",
+                    }, {
+                        label: atype[7],
+                        data: anum[7],
+                        color: "#79d2c0",
+                    }, {
+                        label: atype[9],
+                        data: anum[9],
+                        color: "#1ab394",
+                    }, {
+                        label: atype[10],
+                        data: anum[10],
+                        color: "#d3d3d3",
+                    }, {
+                        label: atype[11],
+                        data: anum[11],
+                        color: "#bababa",
+                    }];
+                } else if (permitType.length == 13) {
+                    data = [{
+                        label: atype[0],
+                        data: anum[0],
+                        color: "#d3d3d3",
+                    }, {
+                        label: atype[1],
+                        data: anum[1],
+                        color: "#bababa",
+                    }, {
+                        label: atype[2],
+                        data: anum[2],
+                        color: "#79d2c0",
+                    }, {
+                        label: atype[3],
+                        data: anum[3],
+                        color: "#1ab394",
+                    }, {
+                        label: atype[4],
+                        data: anum[4],
+                        color: "#d3d3d3",
+                    }, {
+                        label: atype[5],
+                        data: anum[5],
+                        color: "#bababa",
+                    }, {
+                        label: atype[7],
+                        data: anum[7],
+                        color: "#79d2c0",
+                    }, {
+                        label: atype[9],
+                        data: anum[9],
+                        color: "#1ab394",
+                    }, {
+                        label: atype[10],
+                        data: anum[10],
+                        color: "#d3d3d3",
+                    }, {
+                        label: atype[11],
+                        data: anum[11],
+                        color: "#bababa",
+                    }, {
+                        label: atype[12],
+                        data: anum[12],
+                        color: "#79d2c0",
+                    }];
+                } else if (permitType.length == 14) {
+                    data = [{
+                        label: atype[0],
+                        data: anum[0],
+                        color: "#d3d3d3",
+                    }, {
+                        label: atype[1],
+                        data: anum[1],
+                        color: "#bababa",
+                    }, {
+                        label: atype[2],
+                        data: anum[2],
+                        color: "#79d2c0",
+                    }, {
+                        label: atype[3],
+                        data: anum[3],
+                        color: "#1ab394",
+                    }, {
+                        label: atype[4],
+                        data: anum[4],
+                        color: "#d3d3d3",
+                    }, {
+                        label: atype[5],
+                        data: anum[5],
+                        color: "#bababa",
+                    }, {
+                        label: atype[7],
+                        data: anum[7],
+                        color: "#79d2c0",
+                    }, {
+                        label: atype[9],
+                        data: anum[9],
+                        color: "#1ab394",
+                    }, {
+                        label: atype[10],
+                        data: anum[10],
+                        color: "#d3d3d3",
+                    }, {
+                        label: atype[11],
+                        data: anum[11],
+                        color: "#bababa",
+                    }, {
+                        label: atype[12],
+                        data: anum[12],
+                        color: "#79d2c0",
+                    }, {
+                        label: atype[13],
+                        data: anum[13],
+                        color: "#1ab394",
+                    }];
+                } else if (permitType.length == 15) {
+                    data = [{
+                        label: atype[0],
+                        data: anum[0],
+                        color: "#d3d3d3",
+                    }, {
+                        label: atype[1],
+                        data: anum[1],
+                        color: "#bababa",
+                    }, {
+                        label: atype[2],
+                        data: anum[2],
+                        color: "#79d2c0",
+                    }, {
+                        label: atype[3],
+                        data: anum[3],
+                        color: "#1ab394",
+                    }, {
+                        label: atype[4],
+                        data: anum[4],
+                        color: "#d3d3d3",
+                    }, {
+                        label: atype[5],
+                        data: anum[5],
+                        color: "#bababa",
+                    }, {
+                        label: atype[7],
+                        data: anum[7],
+                        color: "#79d2c0",
+                    }, {
+                        label: atype[9],
+                        data: anum[9],
+                        color: "#1ab394",
+                    }, {
+                        label: atype[10],
+                        data: anum[10],
+                        color: "#d3d3d3",
+                    }, {
+                        label: atype[11],
+                        data: anum[11],
+                        color: "#bababa",
+                    }, {
+                        label: atype[12],
+                        data: anum[12],
+                        color: "#79d2c0",
+                    }, {
+                        label: atype[13],
+                        data: anum[13],
+                        color: "#1ab394",
+                    }, {
+                        label: atype[14],
+                        data: anum[14],
+                        color: "#d3d3d3",
+                    }];
+                }
+
+                var plotObj = $.plot($("#flot-pie-chart"), data, {
+                    series: {
+                        pie: {
+                            show: true
+                        }
+                    },
+                    grid: {
+                        hoverable: true
+                    },
+                    tooltip: true,
+                    tooltipOpts: {
+                        content: "%p.0%, %s", // show percentages, rounding to 2 decimal places
+                        shifts: {
+                            x: 20,
+                            y: 0
+                        },
+                        defaultTheme: false
+                    }
+                });
+
+            });
+        </script>
+    }
+
+    <script src="~/Content/User/js/plugins/chosen/chosen.jquery.js"></script>
+    <script src="~/Content/User/js/plugins/jsKnob/jquery.knob.js"></script>
+    <script src="~/Content/User/js/plugins/jasny/jasny-bootstrap.min.js"></script>
+    <script src="~/Content/User/js/plugins/datapicker/bootstrap-datepicker.js"></script>
+    <script src="~/Content/User/js/plugins/prettyfile/bootstrap-prettyfile.js"></script>
+    <script src="~/Content/User/js/plugins/nouslider/jquery.nouislider.min.js"></script>
+    <script src="~/Content/User/js/plugins/switchery/switchery.js"></script>
+    <script src="~/Content/User/js/plugins/ionRangeSlider/ion.rangeSlider.min.js"></script>
+    <script src="~/Content/User/js/plugins/iCheck/icheck.min.js"></script>
+    <script src="~/Content/User/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="~/Content/User/js/plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
+    <script src="~/Content/User/js/plugins/clockpicker/clockpicker.js"></script>
+    <script src="~/Content/User/js/plugins/cropper/cropper.min.js"></script>
+    <script src="~/Content/User/js/demo/form-advanced-demo.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,355 @@
+﻿@model IEnumerable<project3_Code.Models.Permit>
+@{
+    ViewBag.Title = "ManagePermits";
+}
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ManagePermits</title>
+
+    <link href="~/Content/User/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="~/Content/User/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="~/Content/User/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="~/Content/User/css/animate.css" rel="stylesheet">
+    <link href="~/Content/User/css/style.css?v=4.1.0" rel="stylesheet">
+    <link href="~/Content/User/css/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>ManagePermits</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add</button>
+                        <div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content animated bounceInRight">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">
+                                            <span aria-hidden="true">&times;</span><span class="sr-only">close</span>
+                                        </button>
+                                        <h4 class="modal-title">Create</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group"><label>Type</label> <input type="text" id="Type" placeholder="Please input Type." class="form-control"></div>
+                                        <div class="form-group"><label>description</label> <input type="text" id="description" placeholder="Please input description." class="form-control"></div>
+                                        <div class="form-group"><label>quarter_price</label> <input type="text" id="quarter_price" placeholder="Please input quarter_price." class="form-control"></div>
+                                        <div class="form-group"><label>halfyear_price</label> <input type="text" id="halfyear_price" placeholder="Please input halfyear_price." class="form-control"></div>
+                                        <div class="form-group"><label>year_price</label> <input type="text" id="year_price" placeholder="Please input year_price." class="form-control"></div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-white" data-dismiss="modal" id="close">cancel</button>
+                                        <button type="button" class="btn btn-primary" onclick="myAdd()">Create</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Type</th>
+                                    <th>description</th>
+                                    <th>quarter_price</th>
+                                    <th>halfyear_price</th>
+                                    <th>year_price</th>
+                                    <th>operation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{ int i = 1; }
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@(i++)</td>
+                                        <td>@item.Type</td>
+                                        <td>@item.Description</td>
+                                        <td>@item.Quarter_price$</td>
+                                        <td>@item.HalfYear_price$</td>
+                                        <td>@item.Year_price$</td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal_@i">Edit</button>
+                                            <div class="modal inmodal" id="myModal_@i" tabindex="-1" role="dialog" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content animated bounceInRight">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">
+                                                                <span aria-hidden="true">&times;</span><span class="sr-only">close</span>
+                                                            </button>
+                                                            <h4 class="modal-title">Edit</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="form-group">
+                                                                <label>Type</label>
+                                                                <input type="text" id="Type_@item.Type" value="@item.Type" placeholder="Please input Type." disabled="disabled" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>description</label>
+                                                                <input type="text" id="description_@item.Type" value="@item.Description" placeholder="Please input description." class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>quarter_price</label>
+                                                                <input type="text" id="quarter_price_@item.Type" value="@item.Quarter_price" placeholder="Please input quarter_price." class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>halfyear_price</label>
+                                                                <input type="text" id="halfyear_price_@item.Type" value="@item.HalfYear_price" placeholder="Please input halfyear_price." class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>year_price</label>
+                                                                <input type="text" id="year_price_@item.Type" value="@item.Year_price" placeholder="Please input year_price." class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-white" data-dismiss="modal" id="close_@item.Type">cancel</button>
+                                                            <button type="button" class="btn btn-primary" onclick="mySave('@item.Type')">save</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-primary" onclick="myDelete('@item.Type')">Delete</button>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Content/User/js/jquery.min.js?v=2.1.4"></script>
+    <script src="~/Content/User/js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="~/Content/User/js/plugins/peity/jquery.peity.min.js"></script>
+    <script src="~/Content/User/js/content.js?v=1.0.0"></script>
+    <script src="~/Content/User/js/plugins/iCheck/icheck.min.js"></script>
+    <script src="~/Content/User/js/demo/peity-demo.js"></script>
+    <script src="~/Content/User/js/plugins/sweetalert/sweetalert.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+        });
+    </script>
+
+    <!--Add ajax-->
+    <script type="text/javascript">
+        function myAdd() {
+            var type = document.getElementById('Type');
+            if (type.value == '')
+            {
+                type.focus();
+                swal({
+                    title: "Error",
+                    text: "Please input Type!",
+                    type: "error"
+                });
+                return false;
+            }
+            var description = document.getElementById('description');
+            if (description.value == '') {
+                description.focus();
+                swal({
+                    title: "Error",
+                    text: "Please input description!",
+                    type: "error"
+                });
+                return false;
+            }
+            var quarter_price = document.getElementById('quarter_price');
+            if (quarter_price.value == '') {
+                quarter_price.focus();
+                swal({
+                    title: "Error",
+                    text: "Please input quarter_price!",
+                    type: "error"
+                });
+                return false;
+            }
+            var halfyear_price = document.getElementById('halfyear_price');
+            if (halfyear_price.value == '') {
+                halfyear_price.focus();
+                swal({
+                    title: "Error",
+                    text: "Please input halfyear_price!",
+                    type: "error"
+                });
+                return false;
+            }
+            var year_price = document.getElementById('year_price');
+            if (year_price.value == '') {
+                year_price.focus();
+                swal({
+                    title: "Error",
+                    text: "Please input year_price!",
+                    type: "error"
+                });
+                return false;
+            }
+
+            $.ajax({
+                url: "/Staffs/AddPermits",
+                data: { Type: type.value, Description: description.value, Quarter_price: quarter_price.value, HalfYear_price: halfyear_price.value, Year_price: year_price.value },
+                type: "post",
+                dataType: "json",
+                success: function (data) {
+                    if (data.state == "success") {
+                        swal({
+                            title: "OK",
+                            text: "Create success.",
+                            type: "success"
+                        }, function () {
+                            //document.getElementById("close").focus();
+                            //document.getElementById("close").click();
+                            location.reload();
+                        });
+                    } else {
+                        swal({
+                            title: "Error",
+                            text: data.message,
+                            type: "error"
+                        });
+                    }
+                }
+            });
+        }
+    </script>
+
+    <!--Edit ajax-->
+    <script type="text/javascript">
+        function mySave(id) {
+            var type = document.getElementById('Type_' + id);
+            if (type.value == '')
+            {
+                type.focus();
+                swal({
+                    title: "Error",
+                    text: "Please input Type!",
+                    type: "error"
+                });
+                return false;
+            }
+            var description = document.getElementById('description_' + id);
+            if (description.value == '') {
+                description.focus();
+                swal({
+                    title: "Error",
+                    text: "Please input description!",
+                    type: "error"
+                });
+                return false;
+            }
+            var quarter_price = document.getElementById('quarter_price_' + id);
+            if (quarter_price.value == '') {
+                quarter_price.focus();
+                swal({
+                    title: "Error",
+                    text: "Please input quarter_price!",
+                    type: "error"
+                });
+                return false;
+            }
+            var halfyear_price = document.getElementById('halfyear_price_' + id);
+            if (halfyear_price.value == '') {
+                halfyear_price.focus();
+                swal({
+                    title: "Error",
+                    text: "Please input halfyear_price!",
+                    type: "error"
+                });
+                return false;
+            }
+            var year_price = document.getElementById('year_price_' + id);
+            if (year_price.value == '') {
+                year_price.focus();
+                swal({
+                    title: "Error",
+                    text: "Please input year_price!",
+                    type: "error"
+                });
+                return false;
+            }
+            $.ajax({
+                url: "/Staffs/EditPermits",
+                data: { Type: type.value, Description: description.value, Quarter_price: quarter_price.value, HalfYear_price: halfyear_price.value, Year_price: year_price.value },
+                type: "post",
+                dataType: "json",
+                success: function (data) {
+                    if (data.state == "success") {
+                        swal({
+                            title: "OK",
+                            text: "Save success.",
+                            type: "success"
+                        }, function () {
+                            //document.getElementById("close_" + id).focus();
+                            //document.getElementById("close_" + id).click();
+                            location.reload();
+                        });
+                    } else {
+                        swal({
+                            title: "Error",
+                            text: data.message,
+                            type: "error"
+                        });
+                    }
+                }
+            });
+        }
+    </script>
+
+    <!--Select ajax-->
+    <script type="text/javascript">
+        function myDelete(id) {
+            swal({
+                title: "Are you sure you want to delete this ticket here",
+                text: "Delete will not be able to recover, please be careful to operate!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yeah!",
+                cancelButtonText: "Cancel",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },function (isConfirm) {
+                if (isConfirm) {
+                    $.ajax({
+                        url: "/staffs/DeletePermits",
+                        data: { pid: id },
+                        type: "post",
+                        dataType: "json",
+                        success: function (data) {
+                            if (data.state == "success") {
+                                swal({title:"Delete success！", text:"You have permanently deleted this message.", type:"success"}, function(){location.reload();});
+                            } else {
+                                swal("Delete failed！", data.message, "error");
+                            }
+                        }
+                    });
+                } else {
+                    swal("Has been canceled", "You cancel the delete operation！", "error");
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

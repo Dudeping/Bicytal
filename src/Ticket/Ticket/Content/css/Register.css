@@ -1,0 +1,158 @@
+*{
+	margin: 0 0;
+	padding: 0 0;
+}
+body{
+	background:url(../img/13.jpg);
+	font:12px/1.5 Tahoma, Helvetica, Arial, sans-serif
+}
+#top-link{
+	top: 0;
+	width: 100%;
+	height: 55px;
+	line-height: 55px;
+	font-size: 18px;
+	position: fixed;
+	background-color: #000000;
+	opacity:0.6;
+	border-bottom: 1px solid #000000;
+	z-index: 999;
+}
+#nav_img a{
+	background: url(../img/01.jpeg);
+	width: 190px;
+	height: 40px;
+	position: fixed;
+	left: 50px;
+	top:5px;
+}
+#top-link ul.link-left{
+	list-style: none;
+	margin-left: 300px;
+}
+#top-link ul.link-right{
+	list-style: none;
+	margin-left: 1100px;
+}
+#top-link ul li{
+	float: left;
+}
+#top-link ul li a{
+	color: #FFFFFF;
+	text-decoration: none;
+	font-weight: normal;
+	padding: 0 20px;	
+}
+#top-link ul li a:hover{
+	font-family: "comic sans ms";
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.head-title{
+	width: 30%;
+	margin: 0 auto;
+}
+.head-title h1{
+	text-align: center;
+	display: inline-block;
+	font-size: 40pt;
+	filter: dropshadow(color=#228B22,offX=5,offY=3,Positive=1);
+	width: 90%;
+	color: #FFFFFF;
+	line-height: 150%;
+	font-family: "comic sans ms",arial;
+	letter-spacing: 5px;
+}
+#wrap{
+	width: 80%;
+	margin: 100px auto;
+}
+#page{
+	margin: 40px auto;
+	width: 80%;
+	overflow: hidden;
+}
+table{
+	padding-top: 10px;
+	padding-bottom: 20px;
+}
+input[type=text],input[type=password]{
+	border: 2px solid #CCCCCC;
+	background-color: rgba(255,255,255,0.8);
+	margin: 20px 80px 10px 20px;
+	height: 30px;
+	width: 60%;
+	padding-left: 5px;
+	color: #000;
+	text-align: left;
+}
+th{
+	vertical-align:middle;
+	text-align: right;
+	font-size: 22px;
+	font-family: "comic sans ms","方正舒体";
+	color: #fff;
+	padding: 0 10px 0 0;
+}
+td span{
+	color: #fff;
+	font-size: 14px;
+	font-weight: bold;
+	font-family: "comic sans ms";
+}
+table{
+	width: 100%;
+}
+input[type=radio]{
+	margin-left: 20px;
+	width: 20px;
+}
+
+.submit{
+	display: inline-block;
+	margin: 5px 0;
+	width: 120px;
+	height: 30px;
+	position: relative;
+	top: 0px;
+	height: 40px;
+	left: 470px;
+}
+.submit input:hover{
+	background-color: rgba(0,0,0,1);
+	transition: all 0.2s linear;
+}
+.submit input{
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	display: inline-block;
+	background-color: rgba(0,0,0,0.5);
+	font-size: 18px;
+	font-family: "comic sans ms","microsoft yahei",arial;
+	color: white;
+	border: none;
+	width: 120px;
+	height: 35px;
+	line-height: 35px;
+	letter-spacing: 2px;
+}
+.submit input:hover{
+	font-size: 20px;
+}
+#foot{
+	width: 100%;
+	position: relative;
+	top: 0px;
+}
+#foot span{
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+	position: relative;
+	font-family: arial;
+	font-size: 13px;
+	color: #696969;
+	padding: 0 0 10px 0;
+}

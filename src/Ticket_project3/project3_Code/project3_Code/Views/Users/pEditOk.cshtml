@@ -1,0 +1,30 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Contact OK</title>
+    <link href="~/Content/User/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/User/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/User/css/animate.css" rel="stylesheet" />
+    <link href="~/Content/User/css/style.css" rel="stylesheet" />
+    <link href="~/Content/User/css/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+</head>
+<body>
+    <script src="~/Content/User/js/jquery.min.js"></script>
+    <script src="~/Content/User/js/bootstrap.min.js"></script>
+    <script src="~/Content/User/js/content.js"></script>
+    <script src="~/Content/User/js/plugins/sweetalert/sweetalert.min.js"></script>
+    <script>
+        swal({
+            title: "Editor success",
+            type: "success"
+        }, function () { window.location.href = '/Users/pDetail'; });
+    </script>
+</body>
+</html>

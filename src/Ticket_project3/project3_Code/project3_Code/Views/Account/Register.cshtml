@@ -1,0 +1,168 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Ticketing network</title>
+    <link href="~/Content/Account/css/framework-font.css" rel="stylesheet" />
+    <link href="~/Content/Account/css/framework-login.css" rel="stylesheet" />
+    <script src="~/Content/Account/js/jquery/jquery-2.1.1.min.js"></script>
+    <script src="~/Content/Account/js/cookie/jquery.cookie.js"></script>
+    <script src="~/Content/Account/js/md5/jquery.md5.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="logo">
+                <i class="fa fa-modx"></i>
+                <h1><span>Ticketing</span> network</h1>
+            </div>
+            <form class="form">
+                <div class="row">
+                    <input id="txt_account" type="text" placeholder="Email">
+                    <i class="fa fa-user"></i>
+                </div>
+                <div class="row">
+                    <input id="txt_password" type="password" placeholder="Password">
+                    <i class="fa fa-key"></i>
+                </div>
+                <div class="row">
+                    <input id="txt_Repassword" type="password" placeholder="RePassword">
+                    <i class="fa fa-key"></i>
+                </div>
+                <div class="row">
+                    <input id="txt_code" maxlength="4" type="text" placeholder="VerCode" style="width: 190px; float: left;">
+                    <div style="width: 110px; float: right; padding-top: 14px; padding-left: 14px;">
+                        <a id="switchCode" href="javascript:void();" style="text-decoration: none;">Change One</a>
+                        <img id="imgcode" class="authcode" src="~/Account/GetAuthCode" width="80" height="25" />
+                    </div>
+                </div>
+                <div class="row">
+                    <button id="register_button" type="button"><span>Register</span></button>
+                </div>
+                <div class="row">
+                    <p style="text-align:center; padding-top:10px; font-size:16px;">Have Account? | <a href="/Account/Login" style="text-decoration: none;">Login >></a></p>
+                </div>
+                <div class="row">
+                </div>
+            </form>
+            <div class="login_tips"></div>
+        </div>
+        <ul class="bg-bubbles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        (function ($) {
+            $.login = {
+                formMessage: function (msg) {
+                    $('.login_tips').find('.tips_msg').remove();
+                    $('.login_tips').append('<div class="tips_msg"><i class="fa fa-question-circle"></i>' + msg + '</div>');
+                },
+                loginClick: function () {
+                    var $username = $("#txt_account");
+                    var $password = $("#txt_password");
+                    var $Repassword = $("#txt_Repassword");
+                    var $code = $("#txt_code");
+                    if ($username.val() == "") {
+                        $username.focus();
+                        $.login.formMessage('Please enter your email address.');
+                        return false;
+                    } else if ($password.val() == "") {
+                        $password.focus();
+                        $.login.formMessage('Please enter the login password.');
+                        return false;
+                    } else if ($Repassword.val() == "") {
+                        $Repassword.focus();
+                        $.login.formMessage('Please enter the login Repassword.');
+                        return false;
+                    } else if ($Repassword.val() != $password.val()) {
+                        $Repassword.focus();
+                        $.login.formMessage('Two passwords are different.');
+                        return false;
+                    } else if ($code.val() == "") {
+                        $code.focus();
+                        $.login.formMessage('Please enter the VerCode.');
+                        return false;
+                    } else {
+                        $("#register_button").attr('disabled', 'disabled').find('span').html("loading...");
+                        $.ajax({
+                            url: "/Account/Register",
+                            data: { username: $.trim($username.val()), password: $.md5($.trim($password.val())), code: $.trim($code.val()) },
+                            type: "post",
+                            dataType: "json",
+                            success: function (data) {
+                                if (data.state == "success") {
+                                    $("#register_button").find('span').html("Register successful...");
+                                    window.setTimeout(function () {
+                                        window.location.href = "/Home/Index";
+                                    }, 500);
+                                } else {
+                                    $("#register_button").removeAttr('disabled').find('span').html("Register");
+                                    $("#switchCode").trigger("click");
+                                    $code.val('');
+                                    $.login.formMessage(data.message);
+                                }
+                            }
+                        });
+                    }
+                },
+                init: function () {
+                    $('.wrapper').height($(window).height());
+                    $(".container").css("margin-top", ($(window).height() - $(".container").height()) / 2 - 50);
+                    $(window).resize(function (e) {
+                        $('.wrapper').height($(window).height());
+                        $(".container").css("margin-top", ($(window).height() - $(".container").height()) / 2 - 50);
+                    });
+                    $("#switchCode").click(function () {
+                        $("#imgcode").attr("src", "/Account/GetAuthCode?time=" + Math.random());
+                    });
+                    var login_error = top.$.cookie('nfine_login_error');
+                    if (login_error != null) {
+                        switch (login_error) {
+                            case "overdue":
+                                $.login.formMessage("Error");
+                                break;
+                            case "OnLine":
+                                $.login.formMessage("Error");
+                                break;
+                            case "-1":
+                                $.login.formMessage("Error");
+                                break;
+                        }
+                        top.$.cookie('nfine_login_error', '', { path: "/", expires: -1 });
+                    }
+                    $("#register_button").click(function () {
+                        $.login.loginClick();
+                    });
+                    document.onkeydown = function (e) {
+                        if (!e) e = window.event;
+                        if ((e.keyCode || e.which) == 13) {
+                            document.getElementById("register_button").focus();
+                            document.getElementById("register_button").click();
+                        }
+                    }
+                }
+            };
+            $(function () {
+                $.login.init();
+            });
+        })(jQuery);
+    </script>
+</body>
+</html>
