@@ -1,0 +1,65 @@
+﻿@model Bicytal.Models.User
+
+@{
+    ViewBag.Title = "Index";
+}
+<link href="~/Content/css/PersonalDetails.css" rel="stylesheet" />
+
+<div id="header">
+    <div class="head_portrait">
+        <img src="~/Content/img/7.jpg" width="150px" height="150px" />
+    </div>
+    <div class="operation">
+        <ul>
+            <li>
+                <img class="img1" src="~/Content/img/ooopic_1473567040.png" width="10px" height="10px" />
+                <a href="#">Modify personal data</a>
+            </li>
+            <li>
+                <img class="img2" src="~/Content/img/ooopic_1473567033.png" width="10px" height="10px" />
+                <a href="#detailed_narcissism">View details</a>
+            </li>
+            <li>
+                <img class="img1" src="~/Content/img/ooopic_1473567187.png" width="10px" height="10px" />
+                <a href="/Users/MyPurchases">Purchase records</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div id="wrap">
+    <div id="detailed_narcissism">
+        <h1>View personal details</h1>
+        <button><a href="/Users/EidtMyDetail">revise</a></button>
+        <table>
+            <tr class="box1">
+                <th>Username：</th>
+                <td>@Html.DisplayFor(model => model.UserName)</td>
+            </tr>
+            <tr>
+                <th>Family name：</th>
+                <td>@Html.DisplayFor(model => model.GName)</td>
+            </tr>
+            <tr class="box1">
+                <th>Last name：</th>
+                <td>@Html.DisplayFor(model => model.SName)</td>
+            </tr>
+            <tr>
+                <th>Street address：</th>
+                <td>@Html.DisplayFor(model => model.Address)</td>
+            </tr>
+
+            <tr class="box1">
+                <th>State or region：</th>
+                <td>@Html.DisplayFor(model => model.State)</td>
+            </tr>
+            <tr>
+                <th>Zip code：</th>
+                <td>@Html.DisplayFor(model => model.PostCode)</td>
+            </tr>
+            <tr class="box1">
+                <th>Telephone：</th>
+                <td>@Html.DisplayFor(model => model.Mobile)</td>
+            </tr>
+        </table>
+    </div>
+</div>

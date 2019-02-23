@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Bicytal.Models.Purchase>
+
+@{
+    ViewBag.Title = "MyPurchases";
+}
+<link href="~/Content/css/PersonalDetails.css" rel="stylesheet" />
+
+<div id="head">
+    <div class="head_portrait">
+        <img src="~/Content/img/7.jpg" width="150px" height="150px" />
+    </div>
+    <div class="operation">
+        <ul>
+            <li>
+                <img class="img1" src="~/Content/img/ooopic_1473567040.png" width="10px" height="10px" />
+                <a href="#">Modify personal data</a>
+            </li>
+            <li>
+                <img class="img2" src="~/Content/img/ooopic_1473567033.png" width="10px" height="10px" />
+                <a href="/User/Index">View details</a>
+            </li>
+            <li>
+                <img class="img1" src="~/Content/img/ooopic_1473567187.png" width="10px" height="10px" />
+                <a href="#">Purchase records</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div id="content">
+    <div class="nav">
+        <h2>My trade</h2>
+        <ul>
+            <li><a href="#PurchaseHistory">Purchase History</a></li>
+            <li><img src="~/Content/img/ooopic_1473570467.png" /></li>
+        </ul>
+        <div>
+        </div>
+        <div id="PurchaseHistory">
+            <h1>Purchase history</h1>
+            <table>
+                <tr class="box1">
+                    <th>Username</th>
+                    <th>Models</th>
+                    <th>Buying time</th>
+                    <th></th>
+                </tr>
+                @{ int num = 0;}
+                @foreach (var item in Model)
+                {
+                    if (((num++) % 2) == 0)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserName.UserName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Type.Type)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PTime)
+                            </td>
+                            <td>
+                                @Html.ActionLink("details", "MyPurchasesDetail", new { pid = item.PId })
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr class="box1">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserName.UserName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Type.Type)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PTime)
+                            </td>
+                            <td>
+                                @Html.ActionLink("details", "MyPurchasesDetail", new { pid = item.PId })
+                            </td>
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
+    </div>
